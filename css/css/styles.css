@@ -3,7 +3,7 @@
     --font-size-h2: 2rem;
     --font-size-h3: 1.9rem;
     --font-size-h3: 1rem;
-    --main-color: #54616F;
+    --main-color: #34464D;
     --background-color: #E4DCCB;
 }
 
@@ -26,9 +26,17 @@ header {
 }
 
 body {
-    font-family: "Avenir Next", sans-serif;
+    font-family: "Jura";
     color: var(--main-color);
     background-color: var(--background-color);
     height: 100vh;
-    margin: 0;
+    margin: 0px;
+}
+
+main {
+    display: flex;
+    columns: 3 8 m3;
+    margin-bottom: 30px;
+    margin-left: 120px;
+    margin-top: 50px;
 }
