@@ -15,6 +15,8 @@ var circle = L.circle([46.86311270734969, 9.53343707562261], {
     radius: 100
 }).addTo(map);
 
+circle.bindPopup("Krassisti WG no cap").openPopup();
+
 // das coop bermuda dreieck von chur
 var polygon = L.polygon([
     [46.84709138840044, 9.508265305732754],
@@ -22,6 +24,15 @@ var polygon = L.polygon([
     [46.85950903954763, 9.526837349085262]
 ]).addTo(map);
 
+// aktuelle position als popup
+var popup = L.popup();
 
+function onMapClick(e) {
+    popup
+        .setLatLng(e.latlng)
+        .setContent(e.latlng.toString())
+        .openOn(map);
+}
 
+map.on('click', onMapClick);
 
