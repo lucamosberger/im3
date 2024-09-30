@@ -64,4 +64,28 @@ p {
     margin-bottom: 100px;
 }
 
-#map { height: 600px; }
+#map {
+    height: 600px;
+    margin-bottom: 50px; 
+}
+
+
+footer {
+    height: 150px;
+    background-color: var(--main-color);
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+}
+
+a {
+    color: var(--background-color);
+    text-decoration: none;
+}
+
+a:visited {
+    color: var(--background-color);
+}
+
+
