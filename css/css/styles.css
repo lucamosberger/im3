@@ -39,9 +39,9 @@ body {
 main {
     display: flex;
     margin-bottom: 30px;
-    margin-left: 300px;
     margin-top: 50px;
-    margin-right: 300px;
+    margin-left: 20%;
+    margin-right: 20%;
 }
 
 .hovertext {

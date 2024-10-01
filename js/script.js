@@ -36,3 +36,11 @@ function onMapClick(e) {
 
 map.on('click', onMapClick);
 
+// Zoom: https://leafletjs.com/examples/zoom-levels/
+
+// Markers: https://leafletjs.com/examples/custom-icons/ 
+
+
+
+
+
