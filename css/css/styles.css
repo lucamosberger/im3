@@ -7,8 +7,8 @@
 }
 
 html {
-    font-size: 14px;
-    margin: 0;
+    font-size: 14px; 
+    margin: 0; 
 }
 
 header {
@@ -20,6 +20,40 @@ header {
     justify-content: center;
     align-items: center;
     background: #34464D;
+    transition: .3s;
+}
+
+header:hover {
+    scale: 1.02;
+    text-shadow: 0px 0px 10px white;
+    
+}
+
+@media (max-width: 1200px) {
+    header {
+        font-size: 25px;
+    }
+    main {
+        margin-top: 40px;
+    }
+}
+  
+@media (max-width: 900px) {
+    header {
+        font-size: 20px;
+    }
+    main {
+            margin-top: 30px;
+        }
+}
+  
+@media (max-width: 600px) {
+    header {
+        font-size: 15px; 
+    }
+    main {
+        margin-top: px;
+    }
 }
 
 img {
@@ -33,7 +67,7 @@ body {
     color: var(--main-color);
     background-color: var(--background-color);
     height: 100vh;
-    margin: 0px;
+    margin: 0px; 
 }
 
 main {
@@ -81,6 +115,12 @@ footer {
     justify-content: center;
     display: flex;
     align-items: center;
+    transition: .3s;
+}
+
+footer:hover {
+    scale: 1.02;
+    text-shadow: 0px 0px 10px white;
 }
 
 a {

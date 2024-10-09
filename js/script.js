@@ -4,8 +4,17 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 }).addTo(map);
 
+// ISS Icon
+var issIcon = L.icon({
+iconUrl: 'images/ISS.png',
+iconSize: [64, 64],
+iconAnchor: [32, 32],
+});
+
+L.marker([46.84822092641077, 9.501919346543152], {icon: issIcon}).addTo(map);
+
 // hier ist das medienhaus
-var marker = L.marker([46.84822092641077, 9.501919346543152]).addTo(map);
+//var marker = L.marker([46.84822092641077, 9.501919346543152]).addTo(map);
 
 // hier ist die beste wg no cap
 var circle = L.circle([46.86311270734969, 9.53343707562261], {
