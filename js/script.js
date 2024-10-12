@@ -1,10 +1,9 @@
-var map = L.map('map').setView([46.8521, 9.5297], 13);
+var map = L.map('map').setView([46.8521, 9.5297], 3);
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 }).addTo(map);
 
-// ISS Icon
 var issIcon = L.icon({
 iconUrl: 'images/ISS.png',
 iconSize: [64, 64],
@@ -24,7 +23,7 @@ var circle = L.circle([46.86311270734969, 9.53343707562261], {
     radius: 100
 }).addTo(map);
 
-circle.bindPopup("Krassisti WG no cap").openPopup();
+//circle.bindPopup("Krassisti WG no cap").openPopup();
 
 // das coop bermuda dreieck von chur
 var polygon = L.polygon([
