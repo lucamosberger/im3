@@ -26,11 +26,17 @@ var circle = L.circle([46.86311270734969, 9.53343707562261], {
 //circle.bindPopup("Krassisti WG no cap").openPopup();
 
 // das coop bermuda dreieck von chur
-var polygon = L.polygon([
+function drawIssPath (path) {
+    var polyline = L.polyline(path, {color: 'red'}).addTo(map);
+    map.fitBounds(polyline.getBounds());
+}
+
+/* 
+var polyline = L.polyline([
     [46.84709138840044, 9.508265305732754],
     [46.85245320233996, 9.534896215172118],
     [46.85950903954763, 9.526837349085262]
-]).addTo(map);
+]).addTo(map); */
 
 // aktuelle position als popup
 var popup = L.popup();
@@ -49,6 +55,25 @@ map.on('click', onMapClick);
 // Markers: https://leafletjs.com/examples/custom-icons/ 
 
 
+console.log("luca_api.php")
 
+const apiUrl = "https://abgespacet.lucamosberger.ch/script/luca_api.php";
 
+let chart = null;
 
+getApiData(apiUrl);
+
+function getApiData(url) {
+fetch(apiUrl)
+    .then((response) => response.json())
+    .then((myData) => {
+        console.log(myData);
+        let posArray = [];
+        for (let i = 0; i < myData.length; i++) {
+            posArray.push([myData[i].latitude, myData[i].longitude]);
+        }
+        drawIssPath(posArray);
+
+        
+    })
+}

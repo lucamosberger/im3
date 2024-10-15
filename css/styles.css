@@ -71,6 +71,11 @@ header:hover {
     margin-bottom: 50px;
 }
 
+.team_title {
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+}
 
 body {
     font-family: "Jura";
