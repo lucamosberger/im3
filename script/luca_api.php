@@ -10,25 +10,30 @@ try {
     // Erstellt eine neue PDO-Instanz mit der Konfiguration aus config.php
     $pdo = new PDO($dsn, $username, $password, $options);
 
-    // SQL-Query, um Daten basierend auf dem Standort auszuwählen, sortiert nach Zeitstempel
-    // Verwende ein Fragezeichen (?) anstelle eines benannten Parameters
-    //$sql = "SELECT * FROM abgespacet_tabelle ORDER BY id  DESC LIMIT 18";
-    $sql = "SELECT * FROM `abgespacet_tabelle` WHERE `timestamp` LIKE '%10.10.2024%' ";
-    // Bereitet die SQL-Anweisung vor
-    $stmt = $pdo->prepare($sql);
+    // Datum aus der GET-Anfrage abrufen
+    if (isset($_GET['date'])) {
+        $date = $_GET['date'];
 
-    // Führt die Abfrage mit der Standortvariablen aus, die in einem Array übergeben wird
-    // Die Standortvariable ersetzt das erste Fragezeichen in der SQL-Anweisung
-    $stmt->execute();
+        // SQL-Query, um Daten basierend auf dem ausgewählten Datum im Format tt.mm.yyyy auszuwählen
+        $sql = "SELECT * FROM `abgespacet_tabelle` WHERE `timestamp` LIKE ?";
+        
+        // Bereitet die SQL-Anweisung vor
+        $stmt = $pdo->prepare($sql);
 
-    // Holt alle passenden Einträge
-    $results = $stmt->fetchAll();
+        // Führt die Abfrage aus, indem das Datum übergeben wird
+        $stmt->execute(["%$date%"]);
 
-    // Gibt die Ergebnisse im JSON-Format zurück
-    echo json_encode($results);
+        // Holt alle passenden Einträge
+        $results = $stmt->fetchAll();
+
+        // Gibt die Ergebnisse im JSON-Format zurück
+        echo json_encode($results);
+    } else {
+        echo json_encode(['error' => 'Kein Datum angegeben.']);
+    }
+
 } catch (PDOException $e) {
     // Gibt eine Fehlermeldung zurück, wenn etwas schiefgeht
     echo json_encode(['error' => $e->getMessage()]);
 }
-
 ?>
