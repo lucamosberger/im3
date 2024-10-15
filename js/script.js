@@ -10,7 +10,12 @@ iconSize: [64, 64],
 iconAnchor: [32, 32],
 });
 
-L.marker([46.84822092641077, 9.501919346543152], {icon: issIcon}).addTo(map);
+function setIssCoordinates(lat, lon) {
+    console.log("setIssCoordinates", lat, lon);
+    L.marker([lat, lon], {icon: issIcon}).addTo(map);
+}
+
+// L.marker([46.84822092641077, 9.501919346543152], {icon: issIcon}).addTo(map);
 
 // hier ist das medienhaus
 //var marker = L.marker([46.84822092641077, 9.501919346543152]).addTo(map);
@@ -67,12 +72,14 @@ function getApiData(url) {
 fetch(apiUrl)
     .then((response) => response.json())
     .then((myData) => {
-        console.log(myData);
+        console.log(myData, "test");
         let posArray = [];
         for (let i = 0; i < myData.length; i++) {
             posArray.push([myData[i].latitude, myData[i].longitude]);
         }
         drawIssPath(posArray);
+        
+        setIssCoordinates(myData[myData.length - 1].latitude, myData[myData.length - 1].longitude);
 
         
     })
