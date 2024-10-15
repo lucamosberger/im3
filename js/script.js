@@ -21,12 +21,12 @@ function setIssCoordinates(lat, lon) {
 //var marker = L.marker([46.84822092641077, 9.501919346543152]).addTo(map);
 
 // hier ist die beste wg no cap
-var circle = L.circle([46.86311270734969, 9.53343707562261], {
-    color: 'red',
-    fillColor: '#f03',
-    fillOpacity: 0.5,
-    radius: 100
-}).addTo(map);
+// var circle = L.circle([46.86311270734969, 9.53343707562261], {
+//     color: 'red',
+//     fillColor: '#f03',
+//     fillOpacity: 0.5,
+//     radius: 100
+// }).addTo(map);
 
 //circle.bindPopup("Krassisti WG no cap").openPopup();
 
@@ -79,7 +79,7 @@ fetch(apiUrl)
         }
         drawIssPath(posArray);
         
-        setIssCoordinates(myData[myData.length - 1].latitude, myData[myData.length - 1].longitude);
+        setIssCoordinates(myData[0].latitude, myData[0].longitude);
 
         
     })

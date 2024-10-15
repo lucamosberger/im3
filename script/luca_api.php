@@ -12,7 +12,7 @@ try {
 
     // SQL-Query, um Daten basierend auf dem Standort auszuwählen, sortiert nach Zeitstempel
     // Verwende ein Fragezeichen (?) anstelle eines benannten Parameters
-    $sql = "SELECT * FROM abgespacet_tabelle ORDER BY id  DESC LIMIT 30";
+    $sql = "SELECT * FROM abgespacet_tabelle ORDER BY id  DESC LIMIT 27";
 
     // Bereitet die SQL-Anweisung vor
     $stmt = $pdo->prepare($sql);
