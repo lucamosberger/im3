@@ -12,8 +12,8 @@ try {
 
     // SQL-Query, um Daten basierend auf dem Standort auszuwählen, sortiert nach Zeitstempel
     // Verwende ein Fragezeichen (?) anstelle eines benannten Parameters
-    $sql = "SELECT * FROM abgespacet_tabelle ORDER BY id  DESC LIMIT 27";
-
+    //$sql = "SELECT * FROM abgespacet_tabelle ORDER BY id  DESC LIMIT 18";
+    $sql = "SELECT * FROM `abgespacet_tabelle` WHERE `timestamp` LIKE '%10.10.2024%' ";
     // Bereitet die SQL-Anweisung vor
     $stmt = $pdo->prepare($sql);
 

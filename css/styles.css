@@ -144,5 +144,26 @@ a {
     color: var(--background-color);
 }*/
 
+.dateform {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+}
 
+.timeform {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+}
 
+input {
+    height: 20px;
+    font-family: "Jura";
+    font-size: 0.75rem;
+    width: auto;
+    margin: 5px 2.5px 5px 2.5px;
+}
