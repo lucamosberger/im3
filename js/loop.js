@@ -1,9 +1,7 @@
-console.log("Script loaded");
-
-var map = L.map('map').setView([46.8521, 9.5297], 3);
+var map = L.map('map').setView([0, 0], 5);
 
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 19,
+    maxZoom: 18,
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap'
 }).addTo(map);
 
@@ -27,13 +25,51 @@ function setIssCoordinates(lat, lon) {
     currentMarker = L.marker([lat, lon], { icon: issIcon }).addTo(map); // Füge neuen Marker hinzu
 }
 
+var issPathLayer = L.layerGroup().addTo(map);
+
 // Funktion, um den Pfad der ISS auf der Karte zu zeichnen
 function drawIssPath(path) {
-    if (currentPath) {
-        map.removeLayer(currentPath); // Entferne den vorherigen Pfad
+    // Leere die Layer-Gruppe, um den vorherigen Pfad zu entfernen
+    issPathLayer.clearLayers();
+
+    // Variable für den endgültigen Pfad
+    let segments = [];
+    let currentSegment = [path[0]]; // Beginne mit dem ersten Punkt
+
+    // Schwellenwert für die maximale Längengrad-Differenz
+    const maxLngDiff = 180;
+
+    for (let i = 1; i < path.length; i++) {
+        let prevPoint = path[i - 1];
+        let currPoint = path[i];
+
+        // Berechne die Differenz in Längengraden
+        let lngDiff = Math.abs(currPoint[1] - prevPoint[1]);
+
+        if (lngDiff > maxLngDiff) {
+            // Wenn die Längengrad-Differenz zu groß ist, unterbreche die Linie
+            segments.push(currentSegment); // Füge das bisherige Segment hinzu
+            currentSegment = []; // Starte ein neues Segment
+        }
+
+        // Füge den aktuellen Punkt zum Segment hinzu
+        currentSegment.push(currPoint);
     }
-    currentPath = L.polyline(path, { color: 'red' }).addTo(map);
-    map.fitBounds(currentPath.getBounds()); // Passe die Ansicht an den Pfad an
+
+    // Füge das letzte Segment hinzu
+    if (currentSegment.length > 0) {
+        segments.push(currentSegment);
+    }
+
+    // Zeichne die Liniensegmente
+    segments.forEach(segment => {
+        L.polyline(segment, { color: 'red', smoothFactor: 0.01}).addTo(issPathLayer);
+    });
+
+    // Passe die Ansicht an den Pfad an
+    if (segments.length > 0) {
+        map.fitBounds(L.polyline(segments[0], { color: 'red' }).getBounds());
+    }
 }
 
 // Popup, wenn die Karte angeklickt wird
@@ -75,7 +111,10 @@ function getApiData(url) {
             drawIssPath(posArray);
 
             // Die aktuelle Position der ISS auf der Karte anzeigen
-            setIssCoordinates(myData[0].latitude, myData[0].longitude);
+            setIssCoordinates(myData[myData.length - 1].latitude, myData[myData.length - 1].longitude);
+
+            console.log("Setting view to:", myData[myData.length - 1].latitude, myData[myData.length - 1].longitude); // Debugging
+            map.flyTo([myData[myData.length - 1].latitude, myData[myData.length - 1].longitude], 3); // Setze die Karte auf die aktuelle Position
         })
         .catch((error) => {
             console.error('Fehler beim Abrufen der API-Daten:', error);

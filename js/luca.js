@@ -1,5 +1,3 @@
-console.log("luca_api.php")
-
 const apiUrl = "https://abgespacet.lucamosberger.ch/script/luca_api.php";
 
 let chart = null;
@@ -59,12 +57,3 @@ function addData(chart, label, newdata) {
     }
     )
 }
-
-/*let form = document.getElementById('form');
-form.addEventListener("submit", function (event) {
-    event.preventDefault();
-
-    let latitude = document.getElementById('latitude').value;
-
-    let url = 
-} */ 

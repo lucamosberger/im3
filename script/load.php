@@ -1,6 +1,6 @@
 <?php
 
-// Transformations-Skript  als '230_transform.php' einbinden
+// Transformations-Skript  als 'transform.php' einbinden
 $jsonData = include('transform.php');
 
 // Dekodiert die JSON-Daten zu einem Array
