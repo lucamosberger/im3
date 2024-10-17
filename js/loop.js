@@ -18,7 +18,6 @@ var currentPath = null;
 
 // Funktion, um die ISS-Koordinaten auf der Karte zu setzen
 function setIssCoordinates(lat, lon) {
-    console.log("setIssCoordinates", lat, lon);
     if (currentMarker) {
         map.removeLayer(currentMarker); // Entferne den vorherigen Marker
     }
